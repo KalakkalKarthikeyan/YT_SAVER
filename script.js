@@ -1,58 +1,55 @@
-// Select DOM elements
-const videoUrlInput = document.getElementById("video-url");
-const formatSelect = document.getElementById("format-select");
-const selectQualityBtn = document.getElementById("select-quality-btn");
-const qualitySelect = document.getElementById("quality-select");
-const downloadBtn = document.getElementById("download-btn");
-const progressBar = document.getElementById("progress-bar");
-const message = document.getElementById("message");
+document.getElementById("fileType").addEventListener("change", function() {
+  var fileType = this.value;
+  var qualitySelect = document.getElementById("quality");
+  var qualityLabel = document.getElementById("qualityLabel");
 
-// Enable "Select Quality" button when URL is provided
-videoUrlInput.addEventListener("input", () => {
-    if (videoUrlInput.value.trim() !== "") {
-        selectQualityBtn.disabled = false;
-    } else {
-        selectQualityBtn.disabled = true;
-    }
+  if (fileType === "mp4") {
+    qualitySelect.style.display = "inline-block";
+    qualityLabel.style.display = "inline-block";
+  } else {
+    qualitySelect.style.display = "none";
+    qualityLabel.style.display = "none";
+  }
 });
 
-// Enable quality select and download when format is selected
-formatSelect.addEventListener("change", () => {
-    const selectedFormat = formatSelect.value;
-    
-    if (selectedFormat === "mp4") {
-        qualitySelect.disabled = false;
-        selectQualityBtn.disabled = false;
-    } else if (selectedFormat === "mp3") {
-        qualitySelect.disabled = true;
-        selectQualityBtn.disabled = true;
-        downloadBtn.disabled = false;
-    } else {
-        qualitySelect.disabled = true;
-        selectQualityBtn.disabled = true;
-        downloadBtn.disabled = true;
-    }
+document.getElementById("downloadButton").addEventListener("click", function() {
+  var videoUrl = document.getElementById("videoUrl").value;
+  var fileType = document.getElementById("fileType").value;
+  var quality = document.getElementById("quality").value;
+
+  if (videoUrl && fileType) {
+    simulateDownload(fileType, quality);
+  } else {
+    alert("Please fill in all fields.");
+  }
 });
 
-// Simulate downloading progress
-function simulateDownload() {
-    let progress = 0;
-    const interval = setInterval(() => {
-        progress += 1;
-        progressBar.value = progress;
+function simulateDownload(fileType, quality) {
+  var progressBar = document.getElementById("progressBar");
+  var downloadButton = document.getElementById("downloadButton");
 
-        if (progress === 100) {
-            clearInterval(interval);
-            message.innerText = "Download Complete!";
-        }
-    }, 50); // Speed of progress (can be adjusted)
+  // Disable the button during download simulation
+  downloadButton.disabled = true;
+
+  var progress = 0;
+  var interval = setInterval(function() {
+    progress += 10;
+    progressBar.style.width = progress + "%";
+
+    if (progress === 100) {
+      clearInterval(interval);
+      alert(fileType.toUpperCase() + " download complete!");
+
+      // Simulate file download (for demonstration)
+      var downloadLink = document.createElement("a");
+      downloadLink.href = fileType === "mp3" 
+        ? "https://www.example.com/sample.mp3" // Replace with MP3 file URL
+        : "https://www.example.com/sample.mp4"; // Replace with MP4 file URL
+      downloadLink.download = fileType === "mp3" ? "audio.mp3" : "video.mp4";
+      downloadLink.click();
+
+      // Enable the button again
+      downloadButton.disabled = false;
+    }
+  }, 500);
 }
-
-// Handle download button click
-downloadBtn.addEventListener("click", () => {
-    message.innerText = "Downloading...";
-
-    // Simulate download progress
-    simulateDownload();
-});
-
