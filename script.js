@@ -1,68 +1,58 @@
-let videoUrl = "";
+// Select DOM elements
+const videoUrlInput = document.getElementById("video-url");
+const formatSelect = document.getElementById("format-select");
+const selectQualityBtn = document.getElementById("select-quality-btn");
+const qualitySelect = document.getElementById("quality-select");
+const downloadBtn = document.getElementById("download-btn");
+const progressBar = document.getElementById("progress-bar");
+const message = document.getElementById("message");
 
-function fetchVideoInfo() {
-    videoUrl = document.getElementById("url").value;
-    if (!videoUrl) return alert("Please enter a YouTube URL");
+// Enable "Select Quality" button when URL is provided
+videoUrlInput.addEventListener("input", () => {
+    if (videoUrlInput.value.trim() !== "") {
+        selectQualityBtn.disabled = false;
+    } else {
+        selectQualityBtn.disabled = true;
+    }
+});
 
-    fetch('https://api.example.com/get_video_info', {  // Replace with your backend URL
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ url: videoUrl })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.error) return alert(data.error);
+// Enable quality select and download when format is selected
+formatSelect.addEventListener("change", () => {
+    const selectedFormat = formatSelect.value;
+    
+    if (selectedFormat === "mp4") {
+        qualitySelect.disabled = false;
+        selectQualityBtn.disabled = false;
+    } else if (selectedFormat === "mp3") {
+        qualitySelect.disabled = true;
+        selectQualityBtn.disabled = true;
+        downloadBtn.disabled = false;
+    } else {
+        qualitySelect.disabled = true;
+        selectQualityBtn.disabled = true;
+        downloadBtn.disabled = true;
+    }
+});
 
-        document.getElementById("thumbnail").src = data.thumbnail;
-        document.getElementById("title").innerText = data.title;
-        document.getElementById("duration").innerText = `Duration: ${data.duration} seconds`;
+// Simulate downloading progress
+function simulateDownload() {
+    let progress = 0;
+    const interval = setInterval(() => {
+        progress += 1;
+        progressBar.value = progress;
 
-        let qualitySelect = document.getElementById("quality");
-        qualitySelect.innerHTML = "";
-        data.qualities.forEach(q => {
-            let option = document.createElement("option");
-            option.value = q;
-            option.innerText = q;
-            qualitySelect.appendChild(option);
-        });
-
-        document.getElementById("video-info").style.display = "block";
-    });
-}
-
-function toggleQuality() {
-    let format = document.getElementById("format").value;
-    document.getElementById("quality").style.display = (format === "mp4") ? "block" : "none";
-}
-
-function startDownload() {
-    let format = document.getElementById("format").value;
-    let quality = document.getElementById("quality").value;
-
-    fetch('https://api.example.com/download', {  // Replace with your backend URL
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ url: videoUrl, format: format, quality: quality })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.error) return alert(data.error);
-        alert(data.message);
-    });
-
-    updateProgress();
-}
-
-function updateProgress() {
-    fetch('https://api.example.com/progress')  // Replace with your backend URL
-    .then(response => response.json())
-    .then(data => {
-        document.getElementById("progress").style.width = data.progress + "%";
-        document.getElementById("progress").innerText = data.progress + "%";
-        
-        if (data.progress < 100) {
-            setTimeout(updateProgress, 500);
+        if (progress === 100) {
+            clearInterval(interval);
+            message.innerText = "Download Complete!";
         }
-    });
+    }, 50); // Speed of progress (can be adjusted)
 }
+
+// Handle download button click
+downloadBtn.addEventListener("click", () => {
+    message.innerText = "Downloading...";
+
+    // Simulate download progress
+    simulateDownload();
+});
 
