@@ -4,7 +4,7 @@ function fetchVideoInfo() {
     videoUrl = document.getElementById("url").value;
     if (!videoUrl) return alert("Please enter a YouTube URL");
 
-    fetch('https://api.example.com/get_video_info', {
+    fetch('https://api.example.com/get_video_info', {  // Replace with your backend URL
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ url: videoUrl })
@@ -39,7 +39,7 @@ function startDownload() {
     let format = document.getElementById("format").value;
     let quality = document.getElementById("quality").value;
 
-    fetch('https://api.example.com/download', {
+    fetch('https://api.example.com/download', {  // Replace with your backend URL
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ url: videoUrl, format: format, quality: quality })
@@ -54,7 +54,7 @@ function startDownload() {
 }
 
 function updateProgress() {
-    fetch('https://api.example.com/progress')
+    fetch('https://api.example.com/progress')  // Replace with your backend URL
     .then(response => response.json())
     .then(data => {
         document.getElementById("progress").style.width = data.progress + "%";
@@ -65,3 +65,4 @@ function updateProgress() {
         }
     });
 }
+
