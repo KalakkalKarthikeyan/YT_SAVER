@@ -1,7 +1,7 @@
 body {
     text-align: center;
     font-family: Arial, sans-serif;
-    background: url('assets/background.jpg') no-repeat center center fixed;
+    background: url('https://raw.githubusercontent.com/KalakkalKarthikeyan/YT_SAVER/refs/heads/main/YOUTUBE%20VIDEO%20DOWNLOADER.png') no-repeat center center fixed;
     background-size: cover;
     color: white;
 }
@@ -43,4 +43,13 @@ button {
     text-align: center;
     line-height: 20px;
     color: white;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+#video-info {
+    display: none;
 }
