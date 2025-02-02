@@ -42,10 +42,11 @@ function simulateDownload(fileType, quality) {
 
       // Simulate file download (for demonstration)
       var downloadLink = document.createElement("a");
-      downloadLink.href = fileType === "mp3" 
+      var downloadUrl = fileType === "mp3" 
         ? "https://www.example.com/sample.mp3" // Replace with MP3 file URL
-        : "https://www.example.com/sample.mp4"; // Replace with MP4 file URL
-      downloadLink.download = fileType === "mp3" ? "audio.mp3" : "video.mp4";
+        : `https://www.example.com/sample_${quality}.mp4`; // Replace with MP4 file URL and quality
+      downloadLink.href = downloadUrl;
+      downloadLink.download = fileType === "mp3" ? "audio.mp3" : `video_${quality}.mp4`;
       downloadLink.click();
 
       // Enable the button again
