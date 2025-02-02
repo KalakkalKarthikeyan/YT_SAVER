@@ -1,42 +1,56 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-image: url('https://raw.githubusercontent.com/KalakkalKarthikeyan/YT_SAVER/refs/heads/main/YOUTUBE%20VIDEO%20DOWNLOADER.png');
-    background-size: cover;
-    background-position: center;
-    color: white;
+  font-family: Arial, sans-serif;
+  background-image: url('https://raw.githubusercontent.com/KalakkalKarthikeyan/YT_SAVER/refs/heads/main/YOUTUBE%20VIDEO%20DOWNLOADER.png');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
 }
 
 .container {
-    text-align: center;
-    max-width: 500px;
-    margin: 50px auto;
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: 20px;
-    border-radius: 10px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 30px;
+  border-radius: 10px;
 }
 
 h1 {
-    font-size: 2em;
+  margin-bottom: 20px;
 }
 
 input, select, button {
-    padding: 10px;
-    margin: 10px;
-    width: 80%;
-    font-size: 1em;
-    border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+  font-size: 16px;
+  width: 80%;
+  max-width: 400px;
+}
+
+button {
+  cursor: pointer;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  font-size: 18px;
+  transition: 0.3s;
 }
 
 button:disabled {
-    background-color: #ccc;
+  background-color: #ccc;
+  cursor: not-allowed;
 }
 
-progress {
-    margin-top: 20px;
+button:hover:not(:disabled) {
+  background-color: #45a049;
 }
 
-p {
-    font-size: 1.2em;
+#progressBar {
+  height: 5px;
+  background-color: #4CAF50;
+  margin-top: 20px;
 }
+
