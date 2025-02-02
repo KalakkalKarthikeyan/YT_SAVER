@@ -1,49 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YouTube Video Downloader</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube Video Downloader</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>YouTube Video Downloader</h1>
-        
-        <!-- Input for the YouTube URL -->
-        <input type="text" id="video-url" placeholder="Paste the YouTube video URL here">
-        
-        <!-- Select MP4 or MP3 option -->
-        <select id="format-select">
-            <option value="">Select MP4 or MP3</option>
-            <option value="mp4">MP4</option>
-            <option value="mp3">MP3</option>
-        </select>
-        
-        <!-- Button to show quality options -->
-        <button id="select-quality-btn" disabled>Select the Quality</button>
-        
-        <!-- Quality options dropdown -->
-        <select id="quality-select" disabled>
-            <option value="240p">240p</option>
-            <option value="360p">360p</option>
-            <option value="480p">480p</option>
-            <option value="720p">720p</option>
-            <option value="1080p">1080p</option>
-            <option value="1440p">1440p</option>
-            <option value="2160p">2160p</option>
-        </select>
-        
-        <!-- Download button -->
-        <button id="download-btn" disabled>Download</button>
-        
-        <!-- Progress bar -->
-        <progress id="progress-bar" value="0" max="100" style="width: 100%;"></progress>
-        
-        <!-- Message -->
-        <p id="message"></p>
-    </div>
+  <div class="container">
+    <h1>YouTube Video Downloader</h1>
+    <p>This is a simple website where you can download YouTube videos in MP4 or MP3 format.</p>
 
-    <script src="script.js"></script>
+    <div class="form-container">
+      <label for="videoUrl">Paste YouTube URL:</label>
+      <input type="text" id="videoUrl" placeholder="Enter YouTube URL" />
+
+      <label for="fileType">Select Format:</label>
+      <select id="fileType">
+        <option value="mp4">MP4</option>
+        <option value="mp3">MP3</option>
+      </select>
+
+      <label for="quality" id="qualityLabel" style="display: none;">Select Quality:</label>
+      <select id="quality" style="display: none;">
+        <option value="240p">240p</option>
+        <option value="360p">360p</option>
+        <option value="480p">480p</option>
+        <option value="720p">720p</option>
+        <option value="1080p">1080p</option>
+        <option value="1440p">1440p</option>
+        <option value="2160p">2160p</option>
+      </select>
+
+      <button id="downloadButton" disabled>Download</button>
+
+      <div id="progressBar" style="width: 0%;"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
