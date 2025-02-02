@@ -1,43 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>YouTube Video Downloader</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Video Downloader</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>YouTube Video Downloader</h1>
-    <p>This is a simple website where you can download YouTube videos in MP4 or MP3 format.</p>
+    <div class="container">
+        <h1>YouTube Video Downloader</h1>
+        <p>This is a simple website where you can download YouTube videos in MP4 or MP3 format.</p>
 
-    <div class="form-container">
-      <label for="videoUrl">Paste YouTube URL:</label>
-      <input type="text" id="videoUrl" placeholder="Enter YouTube URL" />
+        <input type="text" id="videoUrl" placeholder="Paste YouTube Video URL" />
+        <button id="loadVideoButton">Load Video</button>
 
-      <label for="fileType">Select Format:</label>
-      <select id="fileType">
-        <option value="mp4">MP4</option>
-        <option value="mp3">MP3</option>
-      </select>
+        <div id="videoPlayerContainer" style="display: none;">
+            <iframe id="youtubePlayer" width="560" height="315" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
 
-      <label for="quality" id="qualityLabel" style="display: none;">Select Quality:</label>
-      <select id="quality" style="display: none;">
-        <option value="240p">240p</option>
-        <option value="360p">360p</option>
-        <option value="480p">480p</option>
-        <option value="720p">720p</option>
-        <option value="1080p">1080p</option>
-        <option value="1440p">1440p</option>
-        <option value="2160p">2160p</option>
-      </select>
+        <div id="downloadOptions" style="display: none;">
+            <label for="fileType">Select file type:</label>
+            <select id="fileType">
+                <option value="mp4">MP4</option>
+                <option value="mp3">MP3</option>
+            </select>
 
-      <button id="downloadButton" disabled>Download</button>
-
-      <div id="progressBar" style="width: 0%;"></div>
+            <div id="qualityOptions" style="display: none;">
+                <label for="quality">Select quality:</label>
+                <select id="quality">
+                    <option value="240p">240p</option>
+                    <option value="360p">360p</option>
+                    <option value="480p">480p</option>
+                    <option value="720p">720p</option>
+                    <option value="1080p">1080p</option>
+                    <option value="1440p">1440p</option>
+                    <option value="2160p">2160p</option>
+                </select>
+            </div>
+            <button id="downloadButton">Download</button>
+        </div>
+        
+        <div id="progressContainer" style="display: none;">
+            <div id="progressBar" style="width: 0%;"></div>
+        </div>
     </div>
-  </div>
 
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
+
