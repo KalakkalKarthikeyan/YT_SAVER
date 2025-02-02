@@ -1,55 +1,42 @@
 body {
-    text-align: center;
     font-family: Arial, sans-serif;
-    background: url('https://raw.githubusercontent.com/KalakkalKarthikeyan/YT_SAVER/refs/heads/main/YOUTUBE%20VIDEO%20DOWNLOADER.png') no-repeat center center fixed;
+    margin: 0;
+    padding: 0;
+    background-image: url('https://raw.githubusercontent.com/KalakkalKarthikeyan/YT_SAVER/refs/heads/main/YOUTUBE%20VIDEO%20DOWNLOADER.png');
     background-size: cover;
+    background-position: center;
     color: white;
 }
 
 .container {
-    max-width: 400px;
+    text-align: center;
+    max-width: 500px;
     margin: 50px auto;
+    background-color: rgba(0, 0, 0, 0.7);
     padding: 20px;
-    background: rgba(0, 0, 0, 0.7);
     border-radius: 10px;
 }
 
+h1 {
+    font-size: 2em;
+}
+
 input, select, button {
-    width: 100%;
     padding: 10px;
-    margin: 10px 0;
+    margin: 10px;
+    width: 80%;
+    font-size: 1em;
     border-radius: 5px;
-    border: none;
 }
 
-button {
-    background: red;
-    color: white;
-    cursor: pointer;
+button:disabled {
+    background-color: #ccc;
 }
 
-#progress-bar {
-    width: 100%;
-    height: 20px;
-    background: gray;
-    border-radius: 5px;
-    overflow: hidden;
+progress {
+    margin-top: 20px;
 }
 
-#progress {
-    height: 100%;
-    width: 0%;
-    background: green;
-    text-align: center;
-    line-height: 20px;
-    color: white;
-}
-
-h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-#video-info {
-    display: none;
+p {
+    font-size: 1.2em;
 }
